@@ -1,1 +1,1 @@
-# python-exercise-1
+# python-learning
