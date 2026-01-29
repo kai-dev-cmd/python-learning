@@ -1,0 +1,38 @@
+#Exercise 3 - Cafe Menu and Total
+
+#Step one
+#Create a dictionary for menu items
+menu = {
+    "coffee": 5,
+    "tea": 4,
+    "cake": 6
+}
+
+#Step two
+#Establish the total to 0 first so we can count up later
+total = 0
+
+#Step 3 (version 2)
+
+#Ask customer
+order = input("What do you want: ").lower()
+
+#Use while so that if the answer is not "done", continue add on over and over
+while order != "done":
+
+#To check if order is available from menu and also count the total
+  if order in menu:
+
+#to grab the value of "int" (4,5,6) from the key, which is the menu item
+    total += menu[order]
+
+#Print if available and the total
+    print(f"{order} is available and added to your cart. The total is RM{total}")
+
+#Print if not available
+  else:
+    print("Sorry, not available")
+
+#Ask customer again after successful, and if type "done", end the program
+  order = input("Add on? (type 'done' to finish): ").lower()
+print(f"Your final is RM{total}")
