@@ -1,4 +1,4 @@
-# Exercise 2 - Bakery Menu and Stock (Version 1)
+# Exercise 4 - Bakery Menu and Stock (Version 1)
 
 # Step 1 - create menu; price and stock
 menu = {
