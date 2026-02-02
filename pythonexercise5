@@ -1,0 +1,37 @@
+#Mini Farm - Stock Check Exercise
+
+#starting information - stock
+#farm has 10 eggs
+
+#tasks
+#ask farmer how many eggs do you want
+#if number is less than or equal to 10, print approve
+#if number is more than 10, print not enough eggs
+
+#hints
+#use 'int' as input
+#use 1 'if' and 1 'else'
+#compare 2 numbers 
+
+#start here
+#set egg stock
+eggs = 10
+
+#'while True' is a loop
+
+while True:
+    #ask farmer
+    #this input must be inside 'while True'
+    #otherwise the 'else' and 'continue' won't work
+    #because it doesn't know it's part of the loop to ask again
+    amount = int(input("How many eggs?: "))
+    
+    #This is the exit loop
+    if amount <= eggs:
+        stock = eggs - amount
+        print(f"Accepted.\nHere is {amount} eggs.\nWe now have {stock} eggs left.")
+        break #and this is the function to end it
+    
+    else: #otherwise, this will run and return you back before the loop
+        print(f"We don't have {amount}.\nWe only have {eggs} in stock.\n")
+        continue #returns you to ask farmer again
