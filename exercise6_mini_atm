@@ -1,0 +1,115 @@
+#Mini ATM / Bank System
+
+#Balance starts at RM1000
+#Options: deposit, withdraw, check balance, exit
+#Prevent withdrawing more than balance
+#Loop until user exits
+#twist - add pin check (max 3 tries)
+
+#add balance
+balance = 1000
+
+#Step 1 - ask to set pin (loop 1)
+#use while True to check if 4 digits 
+ 
+name = input("Enter your name: ")
+
+while True:
+   
+    set_pin = input("Create new 4 digit pin: ")
+    
+    #use 'len' (length) to make sure its 4 digits and 'isdigit' to validate numbers
+    if len(set_pin) == 4 and set_pin.isdigit():
+        pin = set_pin
+        print("Pin set!")
+        break #end loop
+        
+    else: #if not correct
+        print("Pin must only be exactly 4 digits.")
+        continue #try again
+    
+#Step 2 - enter pin to unlock ATM (loop 2)
+
+#create an attempt so there is a limit
+attempts = 3
+
+#ask for pin to unlock
+while attempts > 0: 
+    unlock_acc = input("Enter your pin to unlock: ")
+    
+    #end loop if successful
+    if unlock_acc == pin:
+        print(f"Welcome, {name}!\nYour balance total is RM{balance}.")
+        break
+    
+    #deducts 1 attempt for every wrong pin is entered
+    else:
+        attempts -= 1
+        print(f"Wrong pin.\nAttempts remaining: {attempts}")
+
+#reaches limit will lock account
+if attempts == 0:
+    print("Account locked")
+    exit()
+    
+#step 3 - bank session
+
+while True:
+    choice = input("Withdraw / deposit / balance / exit: ").lower()
+
+    if choice != "withdraw" and choice != "deposit" and choice != "exit" and choice != "balance":
+        print("Please type withdraw, deposit, balance or exit.")
+        continue
+    
+    elif choice == "withdraw":
+        amount = input("Enter amount to withdraw:" )
+    
+        if not amount.isdigit():
+            print("Enter numbers only")
+            continue
+            
+        amount = int(amount)
+        
+        if amount <= 0:
+            print("Amount must be greater than 0.")
+            continue
+        
+        if amount > balance:
+            print("Insufficient funds.")
+            continue
+        
+        else:
+            balance -= amount
+            print(f"RM{amount} withdraw successful!")
+            print(f"Balance is now RM{balance}")
+            continue
+    
+    elif choice == "deposit":
+        amount = input("Enter amount to deposit:" )
+    
+        if not amount.isdigit():
+            print("Enter numbers only")
+            continue
+        
+        amount = int(amount)
+        
+        if amount <= 0:
+            print("Amount must be greater than 0.\nTry again.")
+            continue
+        
+        if amount > 0:
+            balance += amount
+            print(f"RM{amount} deposit successful!")
+            print(f"Balance is now RM{balance}")
+            continue
+        
+        else:
+            print("Enter numbers only.")
+            continue
+    
+    elif choice == "balance":
+        print(f"Your current balance is {balance}.")
+    
+    elif choice == "exit": 
+        print("Thank you! See you again.")
+        break
