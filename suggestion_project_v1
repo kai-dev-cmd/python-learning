@@ -1,0 +1,43 @@
+#study places to go recommendation 
+#this is just v1, but there is an idea to
+#create a second dict for filters for cleaner coding
+
+#idea
+#a user ask suggestion
+#for example open weekends
+#program prints cafes that opens on weekends
+
+#create dictionary
+#set weekday/weekend open or not
+#set price range budget to expensive
+places = {
+    'little dozo': {'weekday': 'open', 'weekend': 'closed', 'price': 'budget', 'cuisine': 'pastry'},
+    'oct coffee house': {'weekday': 'open', 'weekend': 'open', 'price': 'mid', 'cuisine': 'coffee'},
+    'biru biru': {'weekday': 'open', 'weekend': 'open', 'price': 'expensive', 'cuisine': 'bar'}
+}
+
+#show list first
+print("Available cafes:")
+
+#after 'for', you can create a new variable for the id in the nested dictionary
+for cafe in places:
+    print(cafe)
+
+#then ask for input
+suggest = input("What kind of cafe? / Try 'open on weekends, or budget': ")
+
+#filter check weekend
+if suggest == 'open on weekends':
+    print("Cafe(s) open on weekends: ")
+    #'for cafe,' now we make another var for 'places.items()'
+    for cafe, info in places.items():
+        #this is item you want, but it can also be info['weekday'] if thats what you look for
+        if info['weekend'] == 'open':
+            print(cafe)
+
+#filter check budget
+elif suggest == 'budget':
+    print("Budget cafe(s): ")
+    for cafe, info in places.items():
+        if info['price'] == 'budget':
+            print(cafe)
