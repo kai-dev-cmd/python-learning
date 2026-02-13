@@ -21,10 +21,10 @@ def play_game(low, high, chances):
             continue
 
         if guess > secret_number:
-            print("Too high")
+            print("Hint - Too high")
             chances -= 1
         elif guess < secret_number:
-            print("Too low")
+            print("Hint - Too low")
             chances -= 1
         else:
             print("Correct!")
