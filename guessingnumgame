@@ -1,0 +1,95 @@
+from random import randint
+
+#------------------------------------
+#game function
+#------------------------------------
+def play_game(low, high, chances):
+    secret_number = randint(low, high)
+
+    while chances > 0:
+        try:
+            guess = int(input(
+                f"\nGuess the number between {low}-{high}.\n"
+                f"You have {chances} chances left: "
+            ))
+        except ValueError:
+            print("Lol. That was not a number. Try again.")
+            continue
+
+        if guess < low or guess > high:
+            print("Dude. That's outside of the number range!")
+            continue
+
+        if guess > secret_number:
+            print("Too high")
+            chances -= 1
+        elif guess < secret_number:
+            print("Too low")
+            chances -= 1
+        else:
+            print("Correct!")
+            return
+
+    print(f"You lose. The number was {secret_number}")
+
+
+#------------------------------------
+#difficulty levels dictionary
+#------------------------------------
+levels = {
+    "easy": {"low": 1, "high": 10, "chances": 3},
+    "medium": {"low": 1, "high": 50, "chances": 5},
+    "hard": {"low": 1, "high": 100, "chances": 7}
+}
+
+
+#------------------------------------
+#main menu
+#------------------------------------
+def main_menu():
+    print(
+        "Welcome player!\n"
+        "This is the Guessing Number game\n"
+    )
+
+    while True:
+        choice = input("Type 'start' or 'quit': ").lower()
+
+        if choice == 'start':
+            # select difficulty
+            while True:
+                level_choice = input("Choose difficulty (easy/medium/hard): ").lower()
+                if level_choice in levels:
+                    settings = levels[level_choice]
+                    break
+                else:
+                    print("Invalid difficulty. Try again.")
+
+            # replay loop
+            while True:
+                print()
+                play_game(settings['low'], settings['high'], settings['chances'])
+                print()
+
+                # input-validation for replay
+                while True:
+                    again = input("Play again? y/n: ").lower()
+                    if again in ('y', 'n'):
+                        break
+                    else:
+                        print("Invalid command. Please type y or n.")
+
+                if again == 'n':
+                    break  # exit replay loop, return to menu
+
+        elif choice == 'quit':
+            print("Goodbye")
+            break
+        else:
+            print("Invalid command. Try again")
+
+
+#------------------------------------
+#run program
+#------------------------------------
+main_menu()
